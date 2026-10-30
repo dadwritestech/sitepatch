@@ -1,0 +1,40 @@
+{
+  "host": "news.ycombinator.com",
+  "slug": "hide-the-points-username-and-comment",
+  "title": "Hacker News: hide subline metadata",
+  "request": "hide the points, username and comment count line under each story",
+  "testUrl": "https://news.ycombinator.com",
+  "match": "*://news.ycombinator.com/",
+  "version": "1.0.0",
+  "model": "gemma-4-12b",
+  "assertion": [
+    "visible(\"td.subtext\") > 0 before AND == 0 after",
+    "visible(\".score\") > 0 before AND == 0 after",
+    "visible(\".hnuser\") > 0 before AND == 0 after"
+  ],
+  "status": "pass",
+  "lastVerified": "2026-10-30T08:38:27.997Z",
+  "problems": [],
+  "createdAt": "2026-10-30T07:49:17.857Z",
+  "history": [
+    {
+      "at": "2026-10-30T07:49:17.857Z",
+      "event": "created",
+      "pass": true,
+      "attempts": 1
+    },
+    {
+      "at": "2026-10-30T08:38:27.997Z",
+      "event": "retest",
+      "pass": true,
+      "attempts": 0
+    }
+  ],
+  "audit": {
+    "correct": true,
+    "why": "",
+    "version": "1.0.0",
+    "by": "human, before/after screenshots",
+    "how": "Hand audit (2026-10-30) of before/after screenshots for every patch that passed the DOM assertion: does the after image do what the request asked, and nothing more? dev.to re-audited after its v1.1.0 repair."
+  }
+}

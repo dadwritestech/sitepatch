@@ -1,0 +1,38 @@
+{
+  "host": "docs.python.org",
+  "slug": "hide-the-left-sidebar",
+  "title": "docs.python.org: hide left sidebar",
+  "request": "hide the left sidebar",
+  "testUrl": "https://docs.python.org/3/library/os.html",
+  "match": "*://docs.python.org/3/library/os.html*",
+  "version": "1.0.0",
+  "model": "gemma-4-12b",
+  "assertion": [
+    "visible(\"div.sphinxsidebar\") > 0 before AND == 0 after"
+  ],
+  "status": "pass",
+  "lastVerified": "2026-10-30T08:33:32.132Z",
+  "problems": [],
+  "createdAt": "2026-10-30T07:53:13.147Z",
+  "history": [
+    {
+      "at": "2026-10-30T07:53:13.147Z",
+      "event": "created",
+      "pass": true,
+      "attempts": 1
+    },
+    {
+      "at": "2026-10-30T08:33:32.132Z",
+      "event": "retest",
+      "pass": true,
+      "attempts": 0
+    }
+  ],
+  "audit": {
+    "correct": true,
+    "why": "",
+    "version": "1.0.0",
+    "by": "human, before/after screenshots",
+    "how": "Hand audit (2026-10-30) of before/after screenshots for every patch that passed the DOM assertion: does the after image do what the request asked, and nothing more? dev.to re-audited after its v1.1.0 repair."
+  }
+}

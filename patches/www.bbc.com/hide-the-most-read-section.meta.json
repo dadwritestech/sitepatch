@@ -1,0 +1,44 @@
+{
+  "host": "www.bbc.com",
+  "slug": "hide-the-most-read-section",
+  "title": "BBC News: hide Most watched section",
+  "request": "hide the Most read section",
+  "testUrl": "https://www.bbc.com/news",
+  "match": "*://www.bbc.com/news*",
+  "version": "1.0.0",
+  "model": "gemma-4-12b",
+  "assertion": [
+    "visible(\"section[data-testid=\"illinois-section-outer-5\"]\") > 0 before AND == 0 after"
+  ],
+  "status": "pass",
+  "lastVerified": "2026-10-30T08:43:35.300Z",
+  "problems": [],
+  "createdAt": "2026-10-30T08:04:15.261Z",
+  "history": [
+    {
+      "at": "2026-10-30T08:04:15.261Z",
+      "event": "created",
+      "pass": true,
+      "attempts": 1
+    },
+    {
+      "at": "2026-10-30T08:40:09.235Z",
+      "event": "retest",
+      "pass": true,
+      "attempts": 2
+    },
+    {
+      "at": "2026-10-30T08:43:35.300Z",
+      "event": "retest",
+      "pass": true,
+      "attempts": 3
+    }
+  ],
+  "audit": {
+    "correct": false,
+    "why": "hid 'Most watched', not 'Most read'",
+    "version": "1.0.0",
+    "by": "human, before/after screenshots",
+    "how": "Hand audit (2026-10-30) of before/after screenshots for every patch that passed the DOM assertion: does the after image do what the request asked, and nothing more? dev.to re-audited after its v1.1.0 repair."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "host": "www.wikipedia.org",
+  "slug": "hide-the-footer-with-app-store",
+  "title": "Wikipedia: hide footer projects and app links",
+  "request": "hide the footer with app store links and other Wikimedia projects",
+  "testUrl": "https://www.wikipedia.org",
+  "match": "*://www.wikipedia.org/",
+  "version": "1.0.0",
+  "model": "gemma-4-12b",
+  "assertion": [
+    "visible(\"footer.footer\") > 0 before AND == 0 after",
+    "visible(\".app-badges\") > 0 before AND == 0 after",
+    "visible(\"nav.other-projects\") > 0 before AND == 0 after"
+  ],
+  "status": "pass",
+  "lastVerified": "2026-10-30T08:40:15.625Z",
+  "problems": [],
+  "createdAt": "2026-10-30T07:59:52.576Z",
+  "history": [
+    {
+      "at": "2026-10-30T07:59:52.576Z",
+      "event": "created",
+      "pass": true,
+      "attempts": 1
+    },
+    {
+      "at": "2026-10-30T08:40:15.625Z",
+      "event": "retest",
+      "pass": true,
+      "attempts": 0
+    }
+  ],
+  "audit": {
+    "correct": true,
+    "why": "",
+    "version": "1.0.0",
+    "by": "human, before/after screenshots",
+    "how": "Hand audit (2026-10-30) of before/after screenshots for every patch that passed the DOM assertion: does the after image do what the request asked, and nothing more? dev.to re-audited after its v1.1.0 repair."
+  }
+}

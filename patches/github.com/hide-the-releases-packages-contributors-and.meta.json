@@ -1,0 +1,47 @@
+{
+  "host": "github.com",
+  "slug": "hide-the-releases-packages-contributors-and",
+  "title": "GitHub: hide sidebar boxes",
+  "request": "hide the Releases, Packages, Contributors and Languages boxes in the right sidebar",
+  "testUrl": "https://github.com/microsoft/vscode",
+  "match": "*://github.com/microsoft/vscode*",
+  "version": "1.0.0",
+  "model": "gemma-4-12b",
+  "assertion": [
+    "visible(\"div.Box_1__424Y1a\") > 0 before AND == 0 after",
+    "visible(\"div.Box_2__ya9av3\") > 0 before AND == 0 after",
+    "visible(\"div.Box_3__YmizrJ\") > 0 before AND == 0 after",
+    "visible(\"div.Box_4__lMmroC\") > 0 before AND == 0 after"
+  ],
+  "status": "pass",
+  "lastVerified": "2026-10-30T08:45:45.224Z",
+  "problems": [],
+  "createdAt": "2026-10-30T08:02:27.612Z",
+  "history": [
+    {
+      "at": "2026-10-30T08:02:27.612Z",
+      "event": "created",
+      "pass": true,
+      "attempts": 2
+    },
+    {
+      "at": "2026-10-30T08:34:39.759Z",
+      "event": "retest",
+      "pass": true,
+      "attempts": 2
+    },
+    {
+      "at": "2026-10-30T08:45:45.224Z",
+      "event": "retest",
+      "pass": true,
+      "attempts": 3
+    }
+  ],
+  "audit": {
+    "correct": false,
+    "why": "hashed Box_N classes hid the branch/toolbar row; sidebar boxes still visible",
+    "version": "1.0.0",
+    "by": "human, before/after screenshots",
+    "how": "Hand audit (2026-10-30) of before/after screenshots for every patch that passed the DOM assertion: does the after image do what the request asked, and nothing more? dev.to re-audited after its v1.1.0 repair."
+  }
+}

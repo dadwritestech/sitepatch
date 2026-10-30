@@ -1,0 +1,38 @@
+{
+  "host": "dev.to",
+  "slug": "hide-the-right-sidebar",
+  "title": "dev.to: hide right sidebar",
+  "request": "hide the right sidebar",
+  "testUrl": "https://dev.to",
+  "match": "*://dev.to/",
+  "version": "1.1.0",
+  "model": "gemma-4-12b",
+  "assertion": [
+    "visible(\"#sidebar-wrapper-right\") > 0 before AND == 0 after"
+  ],
+  "status": "repaired",
+  "lastVerified": "2026-10-30T08:33:12.300Z",
+  "problems": [],
+  "createdAt": "2026-10-30T07:54:59.211Z",
+  "history": [
+    {
+      "at": "2026-10-30T07:54:59.211Z",
+      "event": "created",
+      "pass": true,
+      "attempts": 1
+    },
+    {
+      "at": "2026-10-30T08:33:12.300Z",
+      "event": "repaired",
+      "pass": true,
+      "attempts": 1
+    }
+  ],
+  "audit": {
+    "correct": true,
+    "why": "v1.1.0 (agent repair after the precision rule fired): only the right sidebar is hidden. v1.0.0 used bare `aside` and hid both sidebars.",
+    "version": "1.1.0",
+    "by": "human, before/after screenshots",
+    "how": "Hand audit (2026-10-30) of before/after screenshots for every patch that passed the DOM assertion: does the after image do what the request asked, and nothing more? dev.to re-audited after its v1.1.0 repair."
+  }
+}

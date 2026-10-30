@@ -1,0 +1,38 @@
+{
+  "host": "go.dev",
+  "slug": "hide-the-top-navigation-bar",
+  "title": "go.dev: hide top navigation bar",
+  "request": "hide the top navigation bar",
+  "testUrl": "https://go.dev/doc/effective_go",
+  "match": "*://go.dev/doc/effective_go*",
+  "version": "1.0.0",
+  "model": "gemma-4-12b",
+  "assertion": [
+    "visible(\"header.Site-header.js-siteHeader\") > 0 before AND == 0 after"
+  ],
+  "status": "pass",
+  "lastVerified": "2026-10-30T08:38:05.098Z",
+  "problems": [],
+  "createdAt": "2026-10-30T08:12:03.986Z",
+  "history": [
+    {
+      "at": "2026-10-30T08:12:03.986Z",
+      "event": "created",
+      "pass": true,
+      "attempts": 1
+    },
+    {
+      "at": "2026-10-30T08:38:05.098Z",
+      "event": "retest",
+      "pass": true,
+      "attempts": 0
+    }
+  ],
+  "audit": {
+    "correct": true,
+    "why": "",
+    "version": "1.0.0",
+    "by": "human, before/after screenshots",
+    "how": "Hand audit (2026-10-30) of before/after screenshots for every patch that passed the DOM assertion: does the after image do what the request asked, and nothing more? dev.to re-audited after its v1.1.0 repair."
+  }
+}

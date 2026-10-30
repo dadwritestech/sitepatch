@@ -1,0 +1,26 @@
+# Seed requests: public, logged-out pages; hide/rearrange/declutter only.
+news.ycombinator.com: hide the footer with the search box and links
+news.ycombinator.com: hide the points, username and comment count line under each story
+en.wikipedia.org/wiki/Web_browser: hide the Contents sidebar
+en.wikipedia.org/wiki/Web_browser: hide the navigation boxes at the bottom of the article
+developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/div: hide the left sidebar navigation
+developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map: move the Examples section above the Syntax section
+github.com/microsoft/vscode: hide the Releases, Packages, Contributors and Languages boxes in the right sidebar
+github.com/torvalds/linux: move the README above the file list
+docs.python.org/3/library/os.html: hide the left sidebar
+pypi.org/project/requests/: hide the left sidebar with navigation, project links and classifiers
+www.npmjs.com/package/react: hide the right sidebar
+lobste.rs: hide the user avatars next to the bylines
+stackoverflow.com/questions/11227809: hide the Hot Network Questions and Related questions in the right sidebar
+dev.to: hide the right sidebar
+www.bbc.com/news: hide the Most read section
+www.theguardian.com/international: hide the Most viewed section
+archive.org: hide the row of media type icons at the top
+crates.io/crates/serde: hide the right sidebar with metadata and install instructions
+www.wikipedia.org: hide the footer with app store links and other Wikimedia projects
+old.reddit.com: hide the right sidebar
+github.com/trending: hide the Built by contributor avatars on each repository
+docs.github.com/en/get-started/start-your-journey/about-github-and-git: hide the left sidebar navigation
+en.wiktionary.org/wiki/patch: hide the Translations sections
+go.dev/doc/effective_go: hide the top navigation bar
+www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/: hide the reviews and photos sections above the recipe

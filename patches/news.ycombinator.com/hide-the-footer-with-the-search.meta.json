@@ -1,0 +1,39 @@
+{
+  "host": "news.ycombinator.com",
+  "slug": "hide-the-footer-with-the-search",
+  "title": "Hacker News: hide footer",
+  "request": "hide the footer with the search box and links",
+  "testUrl": "https://news.ycombinator.com",
+  "match": "*://news.ycombinator.com/",
+  "version": "1.0.0",
+  "model": "gemma-4-12b",
+  "assertion": [
+    "visible(\"span.yclinks\") > 0 before AND == 0 after",
+    "visible(\"form\") > 0 before AND == 0 after"
+  ],
+  "status": "pass",
+  "lastVerified": "2026-10-30T08:38:20.284Z",
+  "problems": [],
+  "createdAt": "2026-10-30T07:49:03.935Z",
+  "history": [
+    {
+      "at": "2026-10-30T07:49:03.935Z",
+      "event": "created",
+      "pass": true,
+      "attempts": 1
+    },
+    {
+      "at": "2026-10-30T08:38:20.284Z",
+      "event": "retest",
+      "pass": true,
+      "attempts": 0
+    }
+  ],
+  "audit": {
+    "correct": true,
+    "why": "",
+    "version": "1.0.0",
+    "by": "human, before/after screenshots",
+    "how": "Hand audit (2026-10-30) of before/after screenshots for every patch that passed the DOM assertion: does the after image do what the request asked, and nothing more? dev.to re-audited after its v1.1.0 repair."
+  }
+}

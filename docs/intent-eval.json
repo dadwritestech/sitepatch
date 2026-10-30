@@ -1,0 +1,155 @@
+{
+  "at": "2026-10-30T08:31:25.148Z",
+  "agree": 12,
+  "n": 18,
+  "errors": 0,
+  "caught": 2,
+  "bad": 4,
+  "falseRej": 4,
+  "rows": [
+    {
+      "id": "crates.io/hide-the-right-sidebar-with-metadata",
+      "human": true,
+      "model": false,
+      "changed": "The entire right sidebar containing Metadata, Install, Homepage, Documentation, Repository, and Owners sections has been removed.",
+      "reason": "The user asked to hide the metadata and install instructions, but the entire sidebar including homepage, documentation, repository, and owners was also removed.",
+      "s": 48
+    },
+    {
+      "id": "dev.to/hide-the-right-sidebar",
+      "human": false,
+      "model": true,
+      "changed": "the right sidebar containing 'Livestreams' and 'What's happening this week' has disappeared",
+      "reason": "The right sidebar was successfully hidden as requested.",
+      "s": 56
+    },
+    {
+      "id": "developer.mozilla.org/hide-the-left-sidebar-navigation",
+      "human": true,
+      "model": false,
+      "changed": "the left sidebar navigation and the right-side advertisement",
+      "reason": "The left sidebar was hidden as requested, but the right-side advertisement was also removed.",
+      "s": 61
+    },
+    {
+      "id": "docs.github.com/hide-the-left-sidebar-navigation",
+      "human": true,
+      "model": true,
+      "changed": "the left sidebar navigation menu containing 'Get started', 'Start your journey', 'Onboarding', etc.",
+      "reason": "The left sidebar navigation was successfully hidden as requested.",
+      "s": 51
+    },
+    {
+      "id": "docs.python.org/hide-the-left-sidebar",
+      "human": true,
+      "model": true,
+      "changed": "the left sidebar containing 'Table of Contents', 'Previous topic', 'Next topic', and 'This page' sections",
+      "reason": "The left sidebar was successfully removed as requested.",
+      "s": 50
+    },
+    {
+      "id": "en.wikipedia.org/hide-the-contents-sidebar",
+      "human": true,
+      "model": true,
+      "changed": "The Contents sidebar on the left side of the page has been removed.",
+      "reason": "The Contents sidebar was successfully hidden as requested.",
+      "s": 54
+    },
+    {
+      "id": "en.wikipedia.org/hide-the-navigation-boxes-at-the",
+      "human": true,
+      "model": true,
+      "changed": "The three navigation boxes (Web browsers, Timeline of web browsers, and Authority control databases) at the bottom of the article were removed.",
+      "reason": "The patch successfully removed the navigation boxes as requested without affecting other elements.",
+      "s": 57
+    },
+    {
+      "id": "en.wiktionary.org/hide-the-translations-sections",
+      "human": true,
+      "model": true,
+      "changed": "The entire 'Translations' section containing multiple definitions and the 'Translations to be checked' header was removed.",
+      "reason": "The patch successfully removed the Translations section as requested while keeping the rest of the page intact.",
+      "s": 57
+    },
+    {
+      "id": "github.com/hide-the-built-by-contributor-avatars",
+      "human": true,
+      "model": true,
+      "changed": "The 'Built by' text and the associated contributor avatars were removed from every repository listing.",
+      "reason": "The patch successfully removed the requested 'Built by' contributor avatars from all visible repositories.",
+      "s": 59
+    },
+    {
+      "id": "github.com/hide-the-releases-packages-contributors-and",
+      "human": false,
+      "model": false,
+      "changed": "nothing",
+      "reason": "The images are identical and no changes were made to the sidebar.",
+      "s": 56
+    },
+    {
+      "id": "github.com/move-the-readme-above-the-file",
+      "human": false,
+      "model": false,
+      "changed": "nothing",
+      "reason": "There is no visible difference between the two images.",
+      "s": 51
+    },
+    {
+      "id": "go.dev/hide-the-top-navigation-bar",
+      "human": true,
+      "model": true,
+      "changed": "the blue top navigation bar containing the Go logo and menu links",
+      "reason": "The top navigation bar was successfully removed as requested.",
+      "s": 58
+    },
+    {
+      "id": "lobste.rs/hide-the-user-avatars-next-to",
+      "human": true,
+      "model": false,
+      "changed": "none",
+      "reason": "The images are identical and no changes were made to the user avatars.",
+      "s": 49
+    },
+    {
+      "id": "news.ycombinator.com/hide-the-footer-with-the-search",
+      "human": true,
+      "model": true,
+      "changed": "The search box and the row of links (Guidelines, FAQ, Lists, API, Security, Legal, Apply to YC, Contact) disappeared.",
+      "reason": "The footer section containing the search box and links was successfully hidden as requested.",
+      "s": 9
+    },
+    {
+      "id": "news.ycombinator.com/hide-the-points-username-and-comment",
+      "human": true,
+      "model": true,
+      "changed": "The points, username, time, hide link, and comment count lines under each story were removed, and the list was extended to show more stories.",
+      "reason": "The patch successfully removed the requested metadata lines under each story.",
+      "s": 8
+    },
+    {
+      "id": "pypi.org/hide-the-left-sidebar-with-navigation",
+      "human": true,
+      "model": false,
+      "changed": "the entire right sidebar containing Project links, Key dates, 3 maintainers, Credits, and GitHub Statistics",
+      "reason": "The user requested to hide the left sidebar, but the right sidebar was removed instead.",
+      "s": 8
+    },
+    {
+      "id": "www.bbc.com/hide-the-most-read-section",
+      "human": false,
+      "model": true,
+      "changed": "The 'MOST WATCHED' section at the top left has disappeared.",
+      "reason": "The 'Most read' (labeled as 'MOST WATCHED' in the UI) section was successfully hidden.",
+      "s": 8
+    },
+    {
+      "id": "www.wikipedia.org/hide-the-footer-with-app-store",
+      "human": true,
+      "model": true,
+      "changed": "The entire footer section containing the Wikimedia Foundation description, app store links, and other Wikimedia projects (Commons, Wikivoyage, Wiktionary, etc.) has been removed.",
+      "reason": "The patch successfully removed the requested footer section including the app store links and other projects.",
+      "s": 9
+    }
+  ]
+}

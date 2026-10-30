@@ -1,0 +1,40 @@
+{
+  "host": "github.com",
+  "slug": "move-the-readme-above-the-file",
+  "title": "GitHub: move README above file list",
+  "request": "move the README above the file list",
+  "testUrl": "https://github.com/torvalds/linux",
+  "match": "*://github.com/torvalds/linux*",
+  "version": "1.0.0",
+  "model": "gemma-4-12b",
+  "assertion": [
+    "\"div#repos-split-pane-content\" precedes \"div.prc-PageLayout-PageLayoutContent-BneH9\" after (not before)"
+  ],
+  "status": "fail",
+  "lastVerified": "2026-10-30T08:37:57.525Z",
+  "problems": [
+    "visible effect: the before and after screenshots of the patched region are pixel-identical; the targeted element is not what the user sees"
+  ],
+  "createdAt": "2026-10-30T08:02:47.161Z",
+  "history": [
+    {
+      "at": "2026-10-30T08:02:47.161Z",
+      "event": "created",
+      "pass": true,
+      "attempts": 1
+    },
+    {
+      "at": "2026-10-30T08:37:57.525Z",
+      "event": "retest",
+      "pass": false,
+      "attempts": 3
+    }
+  ],
+  "audit": {
+    "correct": false,
+    "why": "DOM move passed but nothing visibly changed",
+    "version": "1.0.0",
+    "by": "human, before/after screenshots",
+    "how": "Hand audit (2026-10-30) of before/after screenshots for every patch that passed the DOM assertion: does the after image do what the request asked, and nothing more? dev.to re-audited after its v1.1.0 repair."
+  }
+}

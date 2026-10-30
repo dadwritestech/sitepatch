@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>sitepatch registry — tell any website what to stop doing</title>
+<style>
+:root{--bg:#0e0f11;--panel:#16181c;--line:#26292f;--ink:#e8e6e1;--dim:#8b8f98;--ok:#3ecf8e;--fix:#5aa9ff;--bad:#ff5d5d;--meh:#9a9a9a;--acc:#f5c542}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:48px 32px 24px;max-width:1240px;margin:auto}
+h1{font:800 44px/1 ui-monospace,"Cascadia Code",Menlo,monospace;margin:0 0 10px;letter-spacing:-1px}h1 b{color:var(--acc)}
+.tag{color:var(--dim);font-size:18px;margin:0 0 22px}
+.stats{display:flex;gap:28px;flex-wrap:wrap;font-family:ui-monospace,monospace;font-size:13px;color:var(--dim)}
+.stats strong{display:block;font-size:28px;color:var(--ink)}.stats .ok strong{color:var(--ok)}
+.bar{max-width:1240px;margin:0 auto;padding:0 32px 18px;display:flex;gap:10px;flex-wrap:wrap}
+.bar input{flex:1;min-width:220px;background:var(--panel);border:1px solid var(--line);color:var(--ink);padding:10px 12px;border-radius:8px;font:inherit}
+.bar button{background:var(--panel);border:1px solid var(--line);color:var(--dim);padding:8px 12px;border-radius:8px;font:13px ui-monospace,monospace;cursor:pointer}
+.bar button.on{color:var(--ink);border-color:var(--acc)}
+main{max-width:1240px;margin:auto;padding:0 32px 64px;display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:18px}
+.card[hidden]{display:none}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.card[data-status=fail],.card[data-status=wrong]{border-color:#5a2626}
+.shots{position:relative;margin:0;aspect-ratio:1280/560;overflow:hidden;background:#000}
+.shots img{position:absolute;inset:0;width:100%;height:auto;display:block}
+.shots .after{clip-path:inset(0 0 0 50%)}
+.shots:hover .after{clip-path:inset(0 0 0 0)}
+.shots::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--acc);transition:opacity .2s}.shots:hover::after{opacity:0}
+figcaption{position:absolute;bottom:6px;left:8px;right:8px;display:flex;justify-content:space-between;font:11px ui-monospace,monospace}
+figcaption span{background:#000c;padding:2px 6px;border-radius:4px}
+.noshot{aspect-ratio:1280/560;display:grid;place-items:center;color:var(--dim);background:#0b0c0e}
+.body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}.foot{margin-top:auto}
+.host{font:12px ui-monospace,monospace;color:var(--dim)}
+h2{font-size:16px;margin:0;font-weight:600}
+.badge{font:700 11px ui-monospace,monospace;padding:3px 8px;border-radius:99px;text-transform:uppercase;letter-spacing:.5px}
+.badge.ok{background:#3ecf8e22;color:var(--ok)}.badge.fix{background:#5aa9ff22;color:var(--fix)}.badge.bad{background:#ff5d5d22;color:var(--bad)}.badge.meh{background:#ffffff14;color:var(--meh)}
+details{font-size:13px;color:var(--dim)}summary{cursor:pointer}details ul{margin:6px 0;padding-left:18px}code{font-size:12px;color:#c9c4b8;word-break:break-all}
+.prob{color:var(--bad);font:12px ui-monospace,monospace}.small{font-size:12px;color:var(--dim)}.small a{color:var(--dim)}
+.install{background:var(--acc);color:#111;text-decoration:none;font-weight:700;padding:7px 12px;border-radius:8px;font-size:13px}
+footer{max-width:1240px;margin:auto;padding:0 32px 48px;color:var(--dim);font-size:13px}footer code{color:var(--ink)}
+</style></head><body>
+<header>
+  <h1>site<b>patch</b></h1>
+  <p class="tag">Tell any website what to stop doing. Every patch is verified in a real browser and re-tested against the live site.</p>
+  <div class="stats">
+    <div class="ok"><strong>15/18</strong>verified &amp; audited</div>
+    <div><strong>2</strong>pass the check, wrong target</div>
+    <div><strong>14</strong>sites</div>
+    <div><strong>1</strong>auto-repaired</div>
+    <div><strong>just now</strong>last check</div>
+  </div>
+</header>
+<div class="bar"><input id="q" placeholder="filter: wikipedia, sidebar, footer…" aria-label="filter patches">
+  <button class="on" data-f="all">all</button><button data-f="pass">verified</button><button data-f="repaired">repaired</button><button data-f="fail">broken</button><button data-f="wrong">wrong target</button></div>
+<main id="grid">
+<article class="card" data-status="pass" data-q="crates.io crates.io: hide metadata sidebar hide the right sidebar with metadata and install instructions">
+  <figure class="shots"><img loading="lazy" src="../patches/crates.io/hide-the-right-sidebar-with-metadata.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/crates.io/hide-the-right-sidebar-with-metadata.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">crates.io</span><span class="badge ok">verified</span></div>
+    <h2>hide the right sidebar with metadata and install instructions</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;div.sidebar.svelte-19k0tw6&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      
+      
+      <p class="small">tested on <a href="https://crates.io/crates/serde" rel="noopener">https://crates.io/crates/serde</a> · @match <code>*://crates.io/crates/serde*</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/crates.io/hide-the-right-sidebar-with-metadata.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="repaired" data-q="dev.to dev.to: hide right sidebar hide the right sidebar">
+  <figure class="shots"><img loading="lazy" src="../patches/dev.to/hide-the-right-sidebar.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/dev.to/hide-the-right-sidebar.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">dev.to</span><span class="badge fix">auto-repaired</span></div>
+    <h2>hide the right sidebar</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;#sidebar-wrapper-right&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      
+      
+      <p class="small">tested on <a href="https://dev.to" rel="noopener">https://dev.to</a> · @match <code>*://dev.to/</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/dev.to/hide-the-right-sidebar.user.js">Install v1.1.0</a>
+      <span class="small">checked just now · repaired 1×</span></div>
+  </div>
+</article>
+<article class="card" data-status="pass" data-q="developer.mozilla.org mdn: hide left sidebar hide the left sidebar navigation">
+  <figure class="shots"><img loading="lazy" src="../patches/developer.mozilla.org/hide-the-left-sidebar-navigation.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/developer.mozilla.org/hide-the-left-sidebar-navigation.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">developer.mozilla.org</span><span class="badge ok">verified</span></div>
+    <h2>hide the left sidebar navigation</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;aside#main-sidebar.layout__left-sidebar&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      
+      
+      <p class="small">tested on <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/div" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/div</a> · @match <code>*://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/div*</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/developer.mozilla.org/hide-the-left-sidebar-navigation.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="pass" data-q="docs.github.com github docs: hide left sidebar hide the left sidebar navigation">
+  <figure class="shots"><img loading="lazy" src="../patches/docs.github.com/hide-the-left-sidebar-navigation.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/docs.github.com/hide-the-left-sidebar-navigation.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">docs.github.com</span><span class="badge ok">verified</span></div>
+    <h2>hide the left sidebar navigation</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;nav[role=&quot;navigation&quot;]&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      
+      
+      <p class="small">tested on <a href="https://docs.github.com/en/get-started/start-your-journey/about-github-and-git" rel="noopener">https://docs.github.com/en/get-started/start-your-journey/about-github-and-git</a> · @match <code>*://docs.github.com/en/get-started/start-your-journey/about-github-and-git*</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/docs.github.com/hide-the-left-sidebar-navigation.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="pass" data-q="docs.python.org docs.python.org: hide left sidebar hide the left sidebar">
+  <figure class="shots"><img loading="lazy" src="../patches/docs.python.org/hide-the-left-sidebar.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/docs.python.org/hide-the-left-sidebar.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">docs.python.org</span><span class="badge ok">verified</span></div>
+    <h2>hide the left sidebar</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;div.sphinxsidebar&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      
+      
+      <p class="small">tested on <a href="https://docs.python.org/3/library/os.html" rel="noopener">https://docs.python.org/3/library/os.html</a> · @match <code>*://docs.python.org/3/library/os.html*</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/docs.python.org/hide-the-left-sidebar.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="pass" data-q="en.wikipedia.org wikipedia: hide contents sidebar hide the contents sidebar">
+  <figure class="shots"><img loading="lazy" src="../patches/en.wikipedia.org/hide-the-contents-sidebar.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/en.wikipedia.org/hide-the-contents-sidebar.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">en.wikipedia.org</span><span class="badge ok">verified</span></div>
+    <h2>hide the Contents sidebar</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;nav#mw-panel-toc&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      
+      
+      <p class="small">tested on <a href="https://en.wikipedia.org/wiki/Web_browser" rel="noopener">https://en.wikipedia.org/wiki/Web_browser</a> · @match <code>*://en.wikipedia.org/wiki/Web_browser*</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/en.wikipedia.org/hide-the-contents-sidebar.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="pass" data-q="en.wikipedia.org wikipedia: hide navigation boxes hide the navigation boxes at the bottom of the article">
+  <figure class="shots"><img loading="lazy" src="../patches/en.wikipedia.org/hide-the-navigation-boxes-at-the.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/en.wikipedia.org/hide-the-navigation-boxes-at-the.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">en.wikipedia.org</span><span class="badge ok">verified</span></div>
+    <h2>hide the navigation boxes at the bottom of the article</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;.navbox&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      
+      
+      <p class="small">tested on <a href="https://en.wikipedia.org/wiki/Web_browser" rel="noopener">https://en.wikipedia.org/wiki/Web_browser</a> · @match <code>*://en.wikipedia.org/wiki/Web_browser*</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/en.wikipedia.org/hide-the-navigation-boxes-at-the.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="pass" data-q="en.wiktionary.org wiktionary: hide translations hide the translations sections">
+  <figure class="shots"><img loading="lazy" src="../patches/en.wiktionary.org/hide-the-translations-sections.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/en.wiktionary.org/hide-the-translations-sections.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">en.wiktionary.org</span><span class="badge ok">verified</span></div>
+    <h2>hide the Translations sections</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;div.mw-heading:has(h5#Translations)&quot;) &gt; 0 before AND == 0 after</code></li><li><code>visible(&quot;div[id^=&#39;Translations-&#39;]&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      
+      
+      <p class="small">tested on <a href="https://en.wiktionary.org/wiki/patch" rel="noopener">https://en.wiktionary.org/wiki/patch</a> · @match <code>*://en.wiktionary.org/wiki/patch*</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/en.wiktionary.org/hide-the-translations-sections.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="pass" data-q="github.com github: hide built by contributor avatars hide the built by contributor avatars on each repository">
+  <figure class="shots"><img loading="lazy" src="../patches/github.com/hide-the-built-by-contributor-avatars.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/github.com/hide-the-built-by-contributor-avatars.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">github.com</span><span class="badge ok">verified</span></div>
+    <h2>hide the Built by contributor avatars on each repository</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;article.Box-row span.tmp-mr-3.d-inline-block:has(a.d-inline-block)&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      
+      
+      <p class="small">tested on <a href="https://github.com/trending" rel="noopener">https://github.com/trending</a> · @match <code>*://github.com/trending*</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/github.com/hide-the-built-by-contributor-avatars.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="wrong" data-q="github.com github: hide sidebar boxes hide the releases, packages, contributors and languages boxes in the right sidebar">
+  <figure class="shots"><img loading="lazy" src="../patches/github.com/hide-the-releases-packages-contributors-and.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/github.com/hide-the-releases-packages-contributors-and.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">github.com</span><span class="badge bad">wrong target (audit)</span></div>
+    <h2>hide the Releases, Packages, Contributors and Languages boxes in the right sidebar</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;div.Box_1__424Y1a&quot;) &gt; 0 before AND == 0 after</code></li><li><code>visible(&quot;div.Box_2__ya9av3&quot;) &gt; 0 before AND == 0 after</code></li><li><code>visible(&quot;div.Box_3__YmizrJ&quot;) &gt; 0 before AND == 0 after</code></li><li><code>visible(&quot;div.Box_4__lMmroC&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      <p class="prob">human audit: assertion passes, but hashed Box_N classes hid the branch/toolbar row; sidebar boxes still visible</p>
+      
+      <p class="small">tested on <a href="https://github.com/microsoft/vscode" rel="noopener">https://github.com/microsoft/vscode</a> · @match <code>*://github.com/microsoft/vscode*</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/github.com/hide-the-releases-packages-contributors-and.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="fail" data-q="github.com github: move readme above file list move the readme above the file list">
+  <figure class="shots"><img loading="lazy" src="../patches/github.com/move-the-readme-above-the-file.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/github.com/move-the-readme-above-the-file.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">github.com</span><span class="badge bad">broken</span></div>
+    <h2>move the README above the file list</h2>
+    <details><summary>assertion</summary><ul><li><code>&quot;div#repos-split-pane-content&quot; precedes &quot;div.prc-PageLayout-PageLayoutContent-BneH9&quot; after (not before)</code></li></ul>
+      <p class="prob">human audit: assertion passes, but DOM move passed but nothing visibly changed</p>
+      <p class="prob">visible effect: the before and after screenshots of the patched region are pixel-identical; the targeted element is not what the user sees</p>
+      <p class="small">tested on <a href="https://github.com/torvalds/linux" rel="noopener">https://github.com/torvalds/linux</a> · @match <code>*://github.com/torvalds/linux*</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/github.com/move-the-readme-above-the-file.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="pass" data-q="go.dev go.dev: hide top navigation bar hide the top navigation bar">
+  <figure class="shots"><img loading="lazy" src="../patches/go.dev/hide-the-top-navigation-bar.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/go.dev/hide-the-top-navigation-bar.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">go.dev</span><span class="badge ok">verified</span></div>
+    <h2>hide the top navigation bar</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;header.Site-header.js-siteHeader&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      
+      
+      <p class="small">tested on <a href="https://go.dev/doc/effective_go" rel="noopener">https://go.dev/doc/effective_go</a> · @match <code>*://go.dev/doc/effective_go*</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/go.dev/hide-the-top-navigation-bar.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="pass" data-q="lobste.rs lobste.rs: hide user avatars hide the user avatars next to the bylines">
+  <figure class="shots"><img loading="lazy" src="../patches/lobste.rs/hide-the-user-avatars-next-to.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/lobste.rs/hide-the-user-avatars-next-to.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">lobste.rs</span><span class="badge ok">verified</span></div>
+    <h2>hide the user avatars next to the bylines</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;div.byline .h-card&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      
+      
+      <p class="small">tested on <a href="https://lobste.rs" rel="noopener">https://lobste.rs</a> · @match <code>*://lobste.rs/</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/lobste.rs/hide-the-user-avatars-next-to.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="pass" data-q="news.ycombinator.com hacker news: hide footer hide the footer with the search box and links">
+  <figure class="shots"><img loading="lazy" src="../patches/news.ycombinator.com/hide-the-footer-with-the-search.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/news.ycombinator.com/hide-the-footer-with-the-search.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">news.ycombinator.com</span><span class="badge ok">verified</span></div>
+    <h2>hide the footer with the search box and links</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;span.yclinks&quot;) &gt; 0 before AND == 0 after</code></li><li><code>visible(&quot;form&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      
+      
+      <p class="small">tested on <a href="https://news.ycombinator.com" rel="noopener">https://news.ycombinator.com</a> · @match <code>*://news.ycombinator.com/</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/news.ycombinator.com/hide-the-footer-with-the-search.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="pass" data-q="news.ycombinator.com hacker news: hide subline metadata hide the points, username and comment count line under each story">
+  <figure class="shots"><img loading="lazy" src="../patches/news.ycombinator.com/hide-the-points-username-and-comment.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/news.ycombinator.com/hide-the-points-username-and-comment.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">news.ycombinator.com</span><span class="badge ok">verified</span></div>
+    <h2>hide the points, username and comment count line under each story</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;td.subtext&quot;) &gt; 0 before AND == 0 after</code></li><li><code>visible(&quot;.score&quot;) &gt; 0 before AND == 0 after</code></li><li><code>visible(&quot;.hnuser&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      
+      
+      <p class="small">tested on <a href="https://news.ycombinator.com" rel="noopener">https://news.ycombinator.com</a> · @match <code>*://news.ycombinator.com/</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/news.ycombinator.com/hide-the-points-username-and-comment.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="pass" data-q="pypi.org pypi: hide project sidebar hide the left sidebar with navigation, project links and classifiers">
+  <figure class="shots"><img loading="lazy" src="../patches/pypi.org/hide-the-left-sidebar-with-navigation.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/pypi.org/hide-the-left-sidebar-with-navigation.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">pypi.org</span><span class="badge ok">verified</span></div>
+    <h2>hide the left sidebar with navigation, project links and classifiers</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;.project-description__sidebar&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      
+      
+      <p class="small">tested on <a href="https://pypi.org/project/requests/" rel="noopener">https://pypi.org/project/requests/</a> · @match <code>*://pypi.org/project/requests/*</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/pypi.org/hide-the-left-sidebar-with-navigation.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="wrong" data-q="www.bbc.com bbc news: hide most watched section hide the most read section">
+  <figure class="shots"><img loading="lazy" src="../patches/www.bbc.com/hide-the-most-read-section.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/www.bbc.com/hide-the-most-read-section.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">www.bbc.com</span><span class="badge bad">wrong target (audit)</span></div>
+    <h2>hide the Most read section</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;section[data-testid=&quot;illinois-section-outer-5&quot;]&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      <p class="prob">human audit: assertion passes, but hid &#39;Most watched&#39;, not &#39;Most read&#39;</p>
+      
+      <p class="small">tested on <a href="https://www.bbc.com/news" rel="noopener">https://www.bbc.com/news</a> · @match <code>*://www.bbc.com/news*</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/www.bbc.com/hide-the-most-read-section.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+<article class="card" data-status="pass" data-q="www.wikipedia.org wikipedia: hide footer projects and app links hide the footer with app store links and other wikimedia projects">
+  <figure class="shots"><img loading="lazy" src="../patches/www.wikipedia.org/hide-the-footer-with-app-store.before.jpg" alt="before"><img loading="lazy" class="after" src="../patches/www.wikipedia.org/hide-the-footer-with-app-store.after.jpg" alt="after"><figcaption><span>before</span><span>after</span></figcaption></figure>
+  <div class="body">
+    <div class="row"><span class="host">www.wikipedia.org</span><span class="badge ok">verified</span></div>
+    <h2>hide the footer with app store links and other Wikimedia projects</h2>
+    <details><summary>assertion</summary><ul><li><code>visible(&quot;footer.footer&quot;) &gt; 0 before AND == 0 after</code></li><li><code>visible(&quot;.app-badges&quot;) &gt; 0 before AND == 0 after</code></li><li><code>visible(&quot;nav.other-projects&quot;) &gt; 0 before AND == 0 after</code></li></ul>
+      
+      
+      <p class="small">tested on <a href="https://www.wikipedia.org" rel="noopener">https://www.wikipedia.org</a> · @match <code>*://www.wikipedia.org/</code></p></details>
+    <div class="row foot"><a class="install" href="../patches/www.wikipedia.org/hide-the-footer-with-app-store.user.js">Install v1.0.0</a>
+      <span class="small">checked just now</span></div>
+  </div>
+</article>
+</main>
+<footer>Install needs a userscript manager (Tampermonkey or Violentmonkey). Patches only hide or rearrange elements: no paywall, ad, DRM, login or CAPTCHA circumvention.
+Hover a screenshot to see the patched page. Make your own: <code>sitepatch "example.com: hide the sidebar"</code></footer>
+<script>
+const q=document.getElementById('q'),cards=[...document.querySelectorAll('.card')];let f='all';
+function run(){const t=q.value.toLowerCase();cards.forEach(c=>{c.hidden=!(c.dataset.q.includes(t)&&(f==='all'||c.dataset.status===f))})}
+q.oninput=run;document.querySelectorAll('.bar button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.bar button').forEach(x=>x.classList.remove('on'));b.classList.add('on');f=b.dataset.f;run()});
+</script>
+</body></html>

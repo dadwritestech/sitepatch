@@ -1,0 +1,38 @@
+{
+  "host": "github.com",
+  "slug": "hide-the-built-by-contributor-avatars",
+  "title": "GitHub: hide Built by contributor avatars",
+  "request": "hide the Built by contributor avatars on each repository",
+  "testUrl": "https://github.com/trending",
+  "match": "*://github.com/trending*",
+  "version": "1.0.0",
+  "model": "gemma-4-12b",
+  "assertion": [
+    "visible(\"article.Box-row span.tmp-mr-3.d-inline-block:has(a.d-inline-block)\") > 0 before AND == 0 after"
+  ],
+  "status": "pass",
+  "lastVerified": "2026-10-30T08:33:58.321Z",
+  "problems": [],
+  "createdAt": "2026-10-30T08:08:36.431Z",
+  "history": [
+    {
+      "at": "2026-10-30T08:08:36.431Z",
+      "event": "created",
+      "pass": true,
+      "attempts": 1
+    },
+    {
+      "at": "2026-10-30T08:33:58.321Z",
+      "event": "retest",
+      "pass": true,
+      "attempts": 0
+    }
+  ],
+  "audit": {
+    "correct": true,
+    "why": "",
+    "version": "1.0.0",
+    "by": "human, before/after screenshots",
+    "how": "Hand audit (2026-10-30) of before/after screenshots for every patch that passed the DOM assertion: does the after image do what the request asked, and nothing more? dev.to re-audited after its v1.1.0 repair."
+  }
+}

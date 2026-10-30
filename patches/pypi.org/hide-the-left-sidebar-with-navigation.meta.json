@@ -1,0 +1,38 @@
+{
+  "host": "pypi.org",
+  "slug": "hide-the-left-sidebar-with-navigation",
+  "title": "PyPI: hide project sidebar",
+  "request": "hide the left sidebar with navigation, project links and classifiers",
+  "testUrl": "https://pypi.org/project/requests/",
+  "match": "*://pypi.org/project/requests/*",
+  "version": "1.0.0",
+  "model": "gemma-4-12b",
+  "assertion": [
+    "visible(\".project-description__sidebar\") > 0 before AND == 0 after"
+  ],
+  "status": "pass",
+  "lastVerified": "2026-10-30T08:38:35.081Z",
+  "problems": [],
+  "createdAt": "2026-10-30T08:03:01.621Z",
+  "history": [
+    {
+      "at": "2026-10-30T08:03:01.621Z",
+      "event": "created",
+      "pass": true,
+      "attempts": 1
+    },
+    {
+      "at": "2026-10-30T08:38:35.081Z",
+      "event": "retest",
+      "pass": true,
+      "attempts": 0
+    }
+  ],
+  "audit": {
+    "correct": true,
+    "why": "the sidebar is actually on the right; it is the one meant",
+    "version": "1.0.0",
+    "by": "human, before/after screenshots",
+    "how": "Hand audit (2026-10-30) of before/after screenshots for every patch that passed the DOM assertion: does the after image do what the request asked, and nothing more? dev.to re-audited after its v1.1.0 repair."
+  }
+}

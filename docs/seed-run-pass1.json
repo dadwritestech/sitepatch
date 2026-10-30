@@ -1,0 +1,183 @@
+{
+  "news.ycombinator.com: hide the footer with the search box and links": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 13,
+    "at": "2026-10-30T07:49:03.936Z"
+  },
+  "news.ycombinator.com: hide the points, username and comment count line under each story": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 14,
+    "at": "2026-10-30T07:49:17.857Z"
+  },
+  "en.wikipedia.org/wiki/Web_browser: hide the Contents sidebar": {
+    "pass": false,
+    "attempts": 3,
+    "blocked": null,
+    "problems": [
+      "precondition: \"#n-contents\" matched 1 elements, 0 visible before patch"
+    ],
+    "seconds": 30,
+    "at": "2026-10-30T07:49:47.573Z"
+  },
+  "en.wikipedia.org/wiki/Web_browser: hide the navigation boxes at the bottom of the article": {
+    "pass": true,
+    "attempts": 2,
+    "blocked": null,
+    "problems": [],
+    "seconds": 22,
+    "at": "2026-10-30T07:50:09.607Z"
+  },
+  "developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/div: hide the left sidebar navigation": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 13,
+    "at": "2026-10-30T07:50:22.839Z"
+  },
+  "developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map: move the Examples section above the Syntax section": {
+    "pass": false,
+    "attempts": 3,
+    "blocked": null,
+    "problems": [
+      "precondition: \"section.content-section:has(h2#try_it)\" is already positioned relative to \"section.content-section:has(h2#syntax)\" (nothing to move)"
+    ],
+    "seconds": 35,
+    "at": "2026-10-30T07:50:57.985Z"
+  },
+  "github.com/microsoft/vscode: hide the Releases, Packages, Contributors and Languages boxes in the right sidebar": {
+    "pass": false,
+    "attempts": 3,
+    "blocked": null,
+    "problems": [
+      "invalid selector: div[role='region'] > div:has(> span:contains('Releases')), div[role='region'] > div:has(> span:contains('Packages')), div[role='region'] > div:has(> span:contains('Contributors')), div[role='region'] > div:has(> span:contains('Languages'))"
+    ],
+    "seconds": 41,
+    "at": "2026-10-30T07:51:39.139Z"
+  },
+  "github.com/torvalds/linux: move the README above the file list": {
+    "pass": false,
+    "attempts": 3,
+    "blocked": null,
+    "problems": [
+      "precondition: move selector \"div[data-testid='repo-content-container']\" not found",
+      "postcondition: \"div[data-testid='repo-content-container']\" not moved relative to \"div[data-testid='repo-files-container']\""
+    ],
+    "seconds": 39,
+    "at": "2026-10-30T07:52:18.535Z"
+  },
+  "docs.python.org/3/library/os.html: hide the left sidebar": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 55,
+    "at": "2026-10-30T07:53:13.148Z"
+  },
+  "pypi.org/project/requests/: hide the left sidebar with navigation, project links and classifiers": {
+    "pass": false,
+    "attempts": 3,
+    "blocked": null,
+    "problems": [
+      "precondition: \"aside\" matched 0 elements, 0 visible before patch"
+    ],
+    "seconds": 71,
+    "at": "2026-10-30T07:54:24.475Z"
+  },
+  "www.npmjs.com/package/react: hide the right sidebar": {
+    "pass": false,
+    "attempts": 0,
+    "blocked": "http-403",
+    "problems": [
+      "site blocked us: http-403"
+    ],
+    "seconds": 3,
+    "at": "2026-10-30T07:54:27.282Z"
+  },
+  "lobste.rs: hide the user avatars next to the bylines": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 14,
+    "at": "2026-10-30T07:54:41.594Z"
+  },
+  "stackoverflow.com/questions/11227809: hide the Hot Network Questions and Related questions in the right sidebar": {
+    "pass": false,
+    "attempts": 0,
+    "error": "page.evaluate: TypeError: Cannot read properties of null (reading 'tagName')\n    at walk (eval at evaluate (:370:30), <anonymous>:24:49)\n    at outlineInPage (eval at evaluate (:370:30), <anonymous>:46:3)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+    "seconds": 4,
+    "at": "2026-10-30T07:54:46.060Z"
+  },
+  "dev.to: hide the right sidebar": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 13,
+    "at": "2026-10-30T07:54:59.212Z"
+  },
+  "www.bbc.com/news: hide the Most read section": {
+    "pass": false,
+    "attempts": 3,
+    "blocked": null,
+    "problems": [
+      "empty patch"
+    ],
+    "seconds": 70,
+    "at": "2026-10-30T07:56:09.141Z"
+  },
+  "www.theguardian.com/international: hide the Most viewed section": {
+    "pass": false,
+    "attempts": 3,
+    "blocked": null,
+    "problems": [
+      "sanity: patch hides 1870% of the page area",
+      "sanity: page text dropped from 17699 to 1534 chars"
+    ],
+    "seconds": 30,
+    "at": "2026-10-30T07:56:38.655Z"
+  },
+  "archive.org: hide the row of media type icons at the top": {
+    "pass": false,
+    "attempts": 3,
+    "blocked": null,
+    "problems": [
+      "precondition: \".media-type-icons\" matched 0 elements, 0 visible before patch"
+    ],
+    "seconds": 130,
+    "at": "2026-10-30T07:58:49.112Z"
+  },
+  "crates.io/crates/serde: hide the right sidebar with metadata and install instructions": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 50,
+    "at": "2026-10-30T07:59:39.329Z"
+  },
+  "www.wikipedia.org: hide the footer with app store links and other Wikimedia projects": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 13,
+    "at": "2026-10-30T07:59:52.576Z"
+  },
+  "old.reddit.com: hide the right sidebar": {
+    "pass": false,
+    "attempts": 0,
+    "blocked": "http-403",
+    "problems": [
+      "site blocked us: http-403"
+    ],
+    "seconds": 3,
+    "at": "2026-10-30T07:59:55.310Z"
+  }
+}

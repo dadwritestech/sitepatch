@@ -1,0 +1,233 @@
+{
+  "news.ycombinator.com: hide the footer with the search box and links": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 13,
+    "at": "2026-10-30T07:49:03.936Z"
+  },
+  "news.ycombinator.com: hide the points, username and comment count line under each story": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 14,
+    "at": "2026-10-30T07:49:17.857Z"
+  },
+  "en.wikipedia.org/wiki/Web_browser: hide the Contents sidebar": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "runs": 1,
+    "seconds": 17,
+    "at": "2026-10-30T08:01:19.347Z"
+  },
+  "en.wikipedia.org/wiki/Web_browser: hide the navigation boxes at the bottom of the article": {
+    "pass": true,
+    "attempts": 2,
+    "blocked": null,
+    "problems": [],
+    "seconds": 22,
+    "at": "2026-10-30T07:50:09.607Z"
+  },
+  "developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/div: hide the left sidebar navigation": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 13,
+    "at": "2026-10-30T07:50:22.839Z"
+  },
+  "developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map: move the Examples section above the Syntax section": {
+    "pass": false,
+    "attempts": 3,
+    "blocked": null,
+    "problems": [
+      "precondition: \"section.content-section:has(h2#try_it.heading)\" is already positioned relative to \"section.content-section:has(h2#syntax.heading)\" (nothing to move)"
+    ],
+    "runs": 1,
+    "seconds": 36,
+    "at": "2026-10-30T08:01:55.491Z"
+  },
+  "github.com/microsoft/vscode: hide the Releases, Packages, Contributors and Languages boxes in the right sidebar": {
+    "pass": true,
+    "attempts": 2,
+    "blocked": null,
+    "problems": [],
+    "runs": 1,
+    "seconds": 32,
+    "at": "2026-10-30T08:02:27.613Z"
+  },
+  "github.com/torvalds/linux: move the README above the file list": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "runs": 1,
+    "seconds": 20,
+    "at": "2026-10-30T08:02:47.161Z"
+  },
+  "docs.python.org/3/library/os.html: hide the left sidebar": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 55,
+    "at": "2026-10-30T07:53:13.148Z"
+  },
+  "pypi.org/project/requests/: hide the left sidebar with navigation, project links and classifiers": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "runs": 1,
+    "seconds": 14,
+    "at": "2026-10-30T08:03:01.621Z"
+  },
+  "www.npmjs.com/package/react: hide the right sidebar": {
+    "pass": false,
+    "attempts": 0,
+    "blocked": "http-403",
+    "problems": [
+      "site blocked us: http-403"
+    ],
+    "runs": 1,
+    "seconds": 3,
+    "at": "2026-10-30T08:03:04.401Z"
+  },
+  "lobste.rs: hide the user avatars next to the bylines": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 14,
+    "at": "2026-10-30T07:54:41.594Z"
+  },
+  "stackoverflow.com/questions/11227809: hide the Hot Network Questions and Related questions in the right sidebar": {
+    "pass": false,
+    "attempts": 0,
+    "blocked": "empty-page",
+    "problems": [
+      "site blocked us: empty-page"
+    ],
+    "runs": 1,
+    "seconds": 5,
+    "at": "2026-10-30T08:03:09.258Z"
+  },
+  "dev.to: hide the right sidebar": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 13,
+    "at": "2026-10-30T07:54:59.212Z"
+  },
+  "www.bbc.com/news: hide the Most read section": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "runs": 1,
+    "seconds": 66,
+    "at": "2026-10-30T08:04:15.261Z"
+  },
+  "www.theguardian.com/international: hide the Most viewed section": {
+    "pass": false,
+    "attempts": 3,
+    "blocked": null,
+    "problems": [
+      "invalid selector: section:has(h2:contains('Most viewed'))"
+    ],
+    "runs": 1,
+    "seconds": 183,
+    "at": "2026-10-30T08:07:18.210Z"
+  },
+  "archive.org: hide the row of media type icons at the top": {
+    "pass": false,
+    "attempts": 0,
+    "blocked": "empty-page",
+    "problems": [
+      "site blocked us: empty-page"
+    ],
+    "runs": 1,
+    "seconds": 4,
+    "at": "2026-10-30T08:07:21.809Z"
+  },
+  "crates.io/crates/serde: hide the right sidebar with metadata and install instructions": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 50,
+    "at": "2026-10-30T07:59:39.329Z"
+  },
+  "www.wikipedia.org: hide the footer with app store links and other Wikimedia projects": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "seconds": 13,
+    "at": "2026-10-30T07:59:52.576Z"
+  },
+  "old.reddit.com: hide the right sidebar": {
+    "pass": false,
+    "attempts": 0,
+    "blocked": "http-403",
+    "problems": [
+      "site blocked us: http-403"
+    ],
+    "runs": 1,
+    "seconds": 3,
+    "at": "2026-10-30T08:07:24.559Z"
+  },
+  "github.com/trending: hide the Built by contributor avatars on each repository": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "runs": 1,
+    "seconds": 72,
+    "at": "2026-10-30T08:08:36.431Z"
+  },
+  "docs.github.com/en/get-started/start-your-journey/about-github-and-git: hide the left sidebar navigation": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "runs": 1,
+    "seconds": 66,
+    "at": "2026-10-30T08:09:42.422Z"
+  },
+  "en.wiktionary.org/wiki/patch: hide the Translations sections": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "runs": 1,
+    "seconds": 74,
+    "at": "2026-10-30T08:10:56.850Z"
+  },
+  "go.dev/doc/effective_go: hide the top navigation bar": {
+    "pass": true,
+    "attempts": 1,
+    "blocked": null,
+    "problems": [],
+    "runs": 1,
+    "seconds": 67,
+    "at": "2026-10-30T08:12:03.986Z"
+  },
+  "www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/: hide the reviews and photos sections above the recipe": {
+    "pass": false,
+    "attempts": 3,
+    "blocked": null,
+    "problems": [
+      "invalid selector: div:has(> h2:contains('Reviews'))",
+      "invalid selector: div:has(> h2:contains('Photos'))"
+    ],
+    "runs": 1,
+    "seconds": 207,
+    "at": "2026-10-30T08:15:31.033Z"
+  }
+}

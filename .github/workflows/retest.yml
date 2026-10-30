@@ -1,0 +1,44 @@
+# Daily: re-verify every patch against the live site, auto-repair broken ones,
+# rebuild the registry and commit the new statuses. This is the product: sites change, CI notices.
+name: retest patches
+
+on:
+  schedule:
+    - cron: "17 4 * * *"   # daily, 04:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: retest
+  cancel-in-progress: false
+
+jobs:
+  retest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+      # Repair needs an OpenAI-compatible endpoint. Without the secrets, retest still runs
+      # and marks broken patches red; the repair attempt just fails fast.
+      - name: retest + repair
+        env:
+          SITEPATCH_LLM_URL: ${{ secrets.SITEPATCH_LLM_URL }}
+          LLAMA_API_KEY: ${{ secrets.SITEPATCH_LLM_KEY }}
+          SITEPATCH_MODEL: ${{ vars.SITEPATCH_MODEL }}
+        run: node bin/sitepatch.js retest || echo "some patches are broken (see registry)"
+      - name: commit statuses
+        run: |
+          git config user.name "sitepatch-bot"
+          git config user.email "sitepatch-bot@users.noreply.github.com"
+          git add patches site
+          git diff --cached --quiet || git commit -m "retest: $(date -u +%F)"
+          git push

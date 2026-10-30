@@ -1,0 +1,64 @@
+{
+  "how": "Hand audit (2026-10-30) of before/after screenshots for every patch that passed the DOM assertion: does the after image do what the request asked, and nothing more? dev.to re-audited after its v1.1.0 repair.",
+  "labels": {
+    "crates.io/hide-the-right-sidebar-with-metadata": {
+      "correct": true
+    },
+    "dev.to/hide-the-right-sidebar": {
+      "correct": true,
+      "why": "v1.1.0 (agent repair after the precision rule fired): only the right sidebar is hidden. v1.0.0 used bare `aside` and hid both sidebars."
+    },
+    "developer.mozilla.org/hide-the-left-sidebar-navigation": {
+      "correct": true
+    },
+    "docs.github.com/hide-the-left-sidebar-navigation": {
+      "correct": true
+    },
+    "docs.python.org/hide-the-left-sidebar": {
+      "correct": true
+    },
+    "en.wikipedia.org/hide-the-contents-sidebar": {
+      "correct": true
+    },
+    "en.wikipedia.org/hide-the-navigation-boxes-at-the": {
+      "correct": true
+    },
+    "en.wiktionary.org/hide-the-translations-sections": {
+      "correct": true
+    },
+    "github.com/hide-the-built-by-contributor-avatars": {
+      "correct": true
+    },
+    "github.com/hide-the-releases-packages-contributors-and": {
+      "correct": false,
+      "why": "hashed Box_N classes hid the branch/toolbar row; sidebar boxes still visible"
+    },
+    "github.com/move-the-readme-above-the-file": {
+      "correct": false,
+      "why": "DOM move passed but nothing visibly changed"
+    },
+    "go.dev/hide-the-top-navigation-bar": {
+      "correct": true
+    },
+    "lobste.rs/hide-the-user-avatars-next-to": {
+      "correct": true
+    },
+    "news.ycombinator.com/hide-the-footer-with-the-search": {
+      "correct": true
+    },
+    "news.ycombinator.com/hide-the-points-username-and-comment": {
+      "correct": true
+    },
+    "pypi.org/hide-the-left-sidebar-with-navigation": {
+      "correct": true,
+      "why": "the sidebar is actually on the right; it is the one meant"
+    },
+    "www.bbc.com/hide-the-most-read-section": {
+      "correct": false,
+      "why": "hid 'Most watched', not 'Most read'"
+    },
+    "www.wikipedia.org/hide-the-footer-with-app-store": {
+      "correct": true
+    }
+  }
+}
