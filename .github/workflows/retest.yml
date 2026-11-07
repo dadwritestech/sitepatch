@@ -16,6 +16,8 @@ concurrency:
 
 jobs:
   retest:
+    # Off until: gh variable set SITEPATCH_ENABLED --body true
+    if: vars.SITEPATCH_ENABLED == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:

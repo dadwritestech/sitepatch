@@ -97,3 +97,8 @@ sitepatch only hides and rearranges. Before the LLM is called, it refuses reques
 ## Daily CI
 
 `.github/workflows/retest.yml` runs `retest` every day. It rebuilds the registry and commits the new statuses. Repair needs an LLM endpoint (secrets `SITEPATCH_LLM_URL` and `SITEPATCH_LLM_KEY`). Without one, broken patches still turn red.
+
+## License
+
+- **Tool:** [Apache-2.0](LICENSE).
+- **Patches** (`patches/`): [MIT](patches/LICENSE), the userscript norm.
